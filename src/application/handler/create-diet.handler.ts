@@ -7,6 +7,7 @@ import { DietRepository } from "src/domain/repositories/diet-repository.interfac
 @CommandHandler(CreateDietCommand)
 export class CreateDietHandler implements ICommandHandler <CreateDietCommand>{
     constructor(private readonly dietRepository: DietRepository){}
+    
     async execute(command: CreateDietCommand): Promise<void> {
         const diet = new Diet(
             Date.now().toString(),
@@ -14,6 +15,6 @@ export class CreateDietHandler implements ICommandHandler <CreateDietCommand>{
             command.startDate,
             command.description
         );
-        await this.dietRepository.save(diet);
+        await this.dietRepository.create(diet);
     }
 }

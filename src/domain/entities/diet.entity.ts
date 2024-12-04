@@ -5,4 +5,6 @@ export class Diet {
         public readonly startDate: Date,
         public readonly description: string
     ){}
+
+    
 }

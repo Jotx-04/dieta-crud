@@ -2,7 +2,6 @@ import { Body, Controller, Delete, Get, Param, Post, Put } from "@nestjs/common"
 import { CommandBus, QueryBus } from "@nestjs/cqrs";
 import { CreateDietDto } from "../dtos/create-diet.dto";
 import { CreateDietCommand } from "src/application/commands/create-diet.command";
-import { GetAllDietsQuery } from "src/application/queries/get-all-diets.query";
 import { GetDietByIdQuery } from "src/application/queries/get-diet-by-id.query";
 import { DeleteDietCommand } from "src/application/commands/delete-diet.command";
 import { UpdateDietDto } from "../dtos/update-diet.dto";
@@ -18,11 +17,6 @@ export class DietController{
         await this.commandBus.execute(
             new CreateDietCommand(patientName, new Date(startDate), description),
         );
-    }
-
-    @Get()
-    async getAllDiets(){
-        return this.queryBus.execute(new GetAllDietsQuery());
     }
 
     @Get(':id')

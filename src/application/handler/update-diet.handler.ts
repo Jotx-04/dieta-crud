@@ -7,6 +7,6 @@ export class UpdateDietHandler implements ICommandHandler<UpdateDietCommand>{
     constructor(private readonly dietRepository: DietRepository){}
 
     async execute(command: UpdateDietCommand): Promise<void> {
-        await this.dietRepository.update(command.id, command.updates);
+        await this.dietRepository.update(command.updates);
     }
 }
