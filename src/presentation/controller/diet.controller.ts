@@ -6,6 +6,7 @@ import { GetDietByIdQuery } from "src/application/queries/get-diet-by-id.query";
 import { DeleteDietCommand } from "src/application/commands/delete-diet.command";
 import { UpdateDietDto } from "../dtos/update-diet.dto";
 import { UpdateDietCommand } from "src/application/commands/update-diet.command";
+import { GetAllDietsQuery } from "src/application/queries/get-all-diet.query";
 
 @Controller('diets')
 export class DietController{
@@ -18,6 +19,11 @@ export class DietController{
             new CreateDietCommand(patientName, new Date(startDate), description),
         );
     }
+
+    @Get()
+  async getAllDiets() {
+    return this.queryBus.execute(new GetAllDietsQuery());
+  }
 
     @Get(':id')
     async getDietById(@Param('id') id: string){

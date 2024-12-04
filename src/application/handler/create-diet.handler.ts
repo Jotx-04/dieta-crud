@@ -15,6 +15,6 @@ export class CreateDietHandler implements ICommandHandler <CreateDietCommand>{
             command.startDate,
             command.description
         );
-        await this.dietRepository.create(diet);
+        await this.dietRepository.save(diet);
     }
 }
